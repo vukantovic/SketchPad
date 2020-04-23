@@ -41,7 +41,7 @@ namespace SketchPad
         List<int> potezi = new List<int>();
         private void BackGround_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed && currentPoint.X > 0)
             {
                 Line line = new Line();
                 line.Stroke = SystemColors.WindowFrameBrush;
@@ -69,6 +69,7 @@ namespace SketchPad
         {
             potezi.Add(potez);
             potez = 0;
+            currentPoint.X = -1;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
