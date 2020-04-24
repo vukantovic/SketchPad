@@ -1,1 +1,5 @@
-
+Verzija 0.2
+-------------
+  - Funkcionalno crtanje
+  - Omogucen Undo, kao i potpun delete
+  - Save problematican
