@@ -1,0 +1,15 @@
+﻿<Window x:Class="SketchPad.WindowOpen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SketchPad"
+        mc:Ignorable="d"
+        Title="WindowOpen" Height="450" Width="800">
+    <Grid>
+        <Label Content="Adress of the Image you want to load:" HorizontalAlignment="Left" Margin="26,30,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtFile" HorizontalAlignment="Left" Height="97" Margin="26,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="722"/>
+        <Button IsDefault="false" Content="Open" HorizontalAlignment="Left" Margin="26,157,0,0" VerticalAlignment="Top" Width="722" Height="193" Click="Button_Click"/>
+
+    </Grid>
+</Window>

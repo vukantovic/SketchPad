@@ -28,3 +28,7 @@ C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\SketchPa
 C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\SketchPad.csproj.CoreCompileInputs.cache
 C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\SketchPad.exe
 C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\SketchPad.pdb
+C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\WindowSave.g.cs
+C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\WindowSave.baml
+C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\WindowOpen.g.cs
+C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\WindowOpen.baml

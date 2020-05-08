@@ -21,7 +21,7 @@
                 <MenuItem.Icon>
                     <Image Source ="file.png" Margin="20,-27,-90,-26"/>
                 </MenuItem.Icon>
-                <MenuItem x:Name="OpenImage" Header="Open"></MenuItem>
+                <MenuItem x:Name="OpenImage" Header="Open" Click="Open_Click"></MenuItem>
                 <MenuItem x:Name="Save" Header="Save" Click="Save_Click"></MenuItem>
                 <MenuItem x:Name ="Delete" Header="Delete" Click="Delete_Click"></MenuItem>
                 <MenuItem x:Name="Undo" Header="Undo" Click="Undo_Click"/>
