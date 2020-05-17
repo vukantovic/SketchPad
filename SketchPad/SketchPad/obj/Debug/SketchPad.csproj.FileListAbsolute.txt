@@ -32,3 +32,5 @@ C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\WindowSa
 C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\WindowSave.baml
 C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\WindowOpen.g.cs
 C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\WindowOpen.baml
+C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\WindowBrush.g.cs
+C:\Users\vukan\Documents\GitHub\SketchPad\SketchPad\SketchPad\obj\Debug\WindowBrush.baml

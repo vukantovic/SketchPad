@@ -12,15 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Drawing.Drawing2D;
 namespace SketchPad
 {
     public partial class MainWindow : Window
     {
+        Color color = Color.FromRgb(255, 0, 0);
+        int brushSize = 5;
         public MainWindow()
         {
             InitializeComponent();
-           
+
+            
         }
 
         public void Open()
@@ -41,17 +44,25 @@ namespace SketchPad
         List<int> potezi = new List<int>();
         private void BackGround_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed && currentPoint.X > 0)
+            if (e.LeftButton == MouseButtonState.Pressed && currentPoint.X > 0 && currentPoint.Y > Menu.Height + brushSize)
             {
-                Line line = new Line();
-                line.Stroke = SystemColors.WindowFrameBrush;
-                line.X1 = currentPoint.X;
-                line.Y1 = currentPoint.Y - Menu.Height;
-                line.X2 = e.GetPosition(this).X;
-                line.Y2 = e.GetPosition(this).Y - Menu.Height;
-                currentPoint = e.GetPosition(this);
-                BackGround.Children.Add(line);
+                Ellipse ellipse = new Ellipse { Width = brushSize, Height = brushSize };
+                ellipse.Stroke = new SolidColorBrush(color);
+                ellipse.StrokeThickness = brushSize + 5;
+                BackGround.Children.Add(ellipse);
+                Canvas.SetTop(ellipse, e.GetPosition(this).Y - Menu.Height - brushSize/2);
+                Canvas.SetLeft(ellipse, e.GetPosition(this).X - brushSize/2);
                 potez++;
+                /*Line line = new Line();
+                line.Stroke = new SolidColorBrush(color);
+                line.StrokeThickness = brushSize - 10;
+                line.X1 = currentPoint.X;
+                line.Y1 = currentPoint.Y - Menu.Height + (brushSize + 5)/2;
+                currentPoint = e.GetPosition(this);
+                line.X2 = e.GetPosition(this).X;
+                line.Y2 = e.GetPosition(this).Y - Menu.Height + (brushSize +5)/ 2;
+                BackGround.Children.Add(line);*/
+
             }
         }
 
@@ -125,6 +136,17 @@ namespace SketchPad
                     pngEncoder.Save(fs);
                 }
                 
+            }
+        }
+
+        private void Brush_Click(object sender, RoutedEventArgs e)
+        {
+            WindowBrush window = new WindowBrush(brushSize,color);
+            var result = window.ShowDialog();
+            if((bool)result)
+            {
+                color = window.PenColor;
+                brushSize = window.PenSize;
             }
         }
     }

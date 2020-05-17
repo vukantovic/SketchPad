@@ -1,0 +1,27 @@
+﻿<Window x:Class="SketchPad.WindowBrush"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SketchPad"
+        mc:Ignorable="d"
+        Title="WindowBrush" Height="405.926" Width="451.942">
+    <Grid Margin="0,0,-0.4,-50.8" Height="350" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Slider x:Name="sliderSize" HorizontalAlignment="Left" Margin="44,44,0,0" VerticalAlignment="Top" Height="19" Width="334" Maximum="30" Minimum="1"/>
+        <Label Content="Size:" HorizontalAlignment="Left" Margin="24,18,0,0" VerticalAlignment="Top" Height="26" Width="34"/>
+        <Label Content="Color:" HorizontalAlignment="Left" Margin="24,68,0,0" VerticalAlignment="Top" Height="26" Width="42"/>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="44,292,0,0" VerticalAlignment="Top" Width="334" Height="58" Click="Button_Click"/>
+        <Label Content="Blue:" HorizontalAlignment="Left" Margin="44,180,0,0" VerticalAlignment="Top" Height="26" Width="35"/>
+        <Label Content="Red:" HorizontalAlignment="Left" Margin="44,94,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.52" Height="26" Width="32"/>
+        <Label Content="Green:" HorizontalAlignment="Left" Margin="44,141,0,0" VerticalAlignment="Top" Height="26" Width="45"/>
+        <Slider x:Name="sliderRed" HorizontalAlignment="Left" Margin="76,118,0,0" VerticalAlignment="Top" Width="286" Maximum="255" Height="18"/>
+        <Slider x:Name="sliderGreen" HorizontalAlignment="Left" Margin="78,167,0,0" VerticalAlignment="Top" Width="284" Maximum="255" Height="18"/>
+        <Slider x:Name="sliderBlue" HorizontalAlignment="Left" Margin="78,206,0,0" VerticalAlignment="Top" Width="284" Maximum="255" Height="18"/>
+        <Label Content="Opacity:" HorizontalAlignment="Left" Margin="44,229,0,0" VerticalAlignment="Top" Height="26" Width="53"/>
+        <Slider x:Name="sliderOpacity" HorizontalAlignment="Left" Margin="78,260,0,0" VerticalAlignment="Top" Width="284" Height="18" Maximum="255"/>
+    </Grid>
+</Window>

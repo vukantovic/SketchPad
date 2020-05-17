@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WindowBrush.xaml.cs">
+      <DependentUpon>WindowBrush.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowOpen.xaml.cs">
       <DependentUpon>WindowOpen.xaml</DependentUpon>
     </Compile>
@@ -74,6 +77,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WindowBrush.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowOpen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +121,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="brush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="undo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
