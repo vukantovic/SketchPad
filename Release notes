@@ -3,3 +3,12 @@ Verzija 0.2
   - Funkcionalno crtanje
   - Omogucen Undo, kao i potpun delete
   - Save problematican
+
+Verzija 0.3
+-------------
+  -Omogućeni Save i Open slike
+  
+Verzija 0.4
+-------------
+  -Ubačena izmena podešavanja četkice
+  -Undo premešten na pristupačnije mesto
