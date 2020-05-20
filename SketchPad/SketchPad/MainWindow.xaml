@@ -23,20 +23,19 @@
                 </MenuItem.Icon>
                 <MenuItem x:Name="OpenImage" Header="Open" Click="Open_Click"></MenuItem>
                 <MenuItem x:Name="Save" Header="Save" Click="Save_Click"></MenuItem>
-                <MenuItem x:Name ="Delete" Header="Delete" Click="Delete_Click"></MenuItem>
-                
             </MenuItem>
             <MenuItem x:Name="Brush" Width="126" Click="Brush_Click">
                 <MenuItem.Icon>
                     <Image Source="brush.png" Margin="20,-27,-90,-26" RenderTransformOrigin="1,0.749"></Image>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem x:Name="Undo"  Click="Undo_Click" Width="44">
+            <MenuItem x:Name="Undo"  Click="Undo_Click" Width="61">
                 <MenuItem.Header>
-                    <TextBlock Text="Undo" HorizontalAlignment="Center" VerticalAlignment="Center" Width="36"/>
+                    <TextBlock Text="   Undo   " HorizontalAlignment="Center" VerticalAlignment="Center" Width="51"/>
                 </MenuItem.Header>
             </MenuItem>
-
+            <MenuItem Header="   Redo   " x:Name="Redo" Click="Redo_Click" Width="65"></MenuItem>
+            <MenuItem x:Name ="Delete" Header="  Delete  " Click="Delete_Click"></MenuItem>
         </Menu>
         <Canvas x:Name="BackGround" Margin="0,83,-0.4,0" Grid.ColumnSpan="3" Grid.RowSpan="2"  MouseLeftButtonDown="BackGround_MouseLeftButtonDown" MouseMove="BackGround_MouseMove" Background="White" MouseUp="BackGround_MouseUp"/>
 

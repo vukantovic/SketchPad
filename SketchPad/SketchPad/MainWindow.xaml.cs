@@ -22,8 +22,6 @@ namespace SketchPad
         public MainWindow()
         {
             InitializeComponent();
-
-            
         }
 
         public void Open()
@@ -38,10 +36,16 @@ namespace SketchPad
         Point currentPoint = new Point();
         private void BackGround_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            redoPotezi = new List<int>();
+            redoContent = new List<UIElement>();
             currentPoint = e.GetPosition(this);
         }
+
         int potez = 0;
-        List<int> potezi = new List<int>();
+        List<int> redoPotezi = new List<int>();
+        List<UIElement> redoContent = new List<UIElement>();
+        List<int> undoPotezi = new List<int>();
+
         private void BackGround_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed && currentPoint.X > 0 && currentPoint.Y > Menu.Height + brushSize)
@@ -50,18 +54,10 @@ namespace SketchPad
                 ellipse.Stroke = new SolidColorBrush(color);
                 ellipse.StrokeThickness = brushSize + 5;
                 BackGround.Children.Add(ellipse);
-                Canvas.SetTop(ellipse, e.GetPosition(this).Y - Menu.Height - brushSize/2);
-                Canvas.SetLeft(ellipse, e.GetPosition(this).X - brushSize/2);
+                Canvas.SetTop(ellipse, e.GetPosition(this).Y - Menu.Height - brushSize / 2);
+                Canvas.SetLeft(ellipse, e.GetPosition(this).X - brushSize / 2);
                 potez++;
-                /*Line line = new Line();
-                line.Stroke = new SolidColorBrush(color);
-                line.StrokeThickness = brushSize - 10;
-                line.X1 = currentPoint.X;
-                line.Y1 = currentPoint.Y - Menu.Height + (brushSize + 5)/2;
                 currentPoint = e.GetPosition(this);
-                line.X2 = e.GetPosition(this).X;
-                line.Y2 = e.GetPosition(this).Y - Menu.Height + (brushSize +5)/ 2;
-                BackGround.Children.Add(line);*/
 
             }
         }
@@ -70,29 +66,52 @@ namespace SketchPad
         {
             if (BackGround.Children.Count > 0)
             {
-                for (int i = 0; i < potezi[potezi.Count - 1]; i++)
+                for (int i = 0; i < undoPotezi[undoPotezi.Count - 1]; i++)
+                {
+                    redoContent.Add(BackGround.Children[BackGround.Children.Count - 1]);
                     BackGround.Children.RemoveAt(BackGround.Children.Count - 1);
-                potezi.RemoveAt(potezi.Count - 1);
+                }
+                redoPotezi.Add(undoPotezi[undoPotezi.Count - 1]);
+                undoPotezi.RemoveAt(undoPotezi.Count - 1);
+            }
+        }
+
+        private void Redo_Click(object sender, RoutedEventArgs e)
+        {
+            if(redoPotezi.Count > 0)
+            {
+                for (int i = 0; i < redoPotezi[redoPotezi.Count - 1]; i++)
+                {
+                    BackGround.Children.Add(redoContent[redoContent.Count - 1]);
+                    redoContent.RemoveAt(redoContent.Count - 1);
+                }
+                undoPotezi.Add(redoPotezi[redoPotezi.Count - 1]);
+                redoPotezi.RemoveAt(redoPotezi.Count - 1);
             }
         }
 
         private void BackGround_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            potezi.Add(potez);
+            undoPotezi.Add(potez);
             potez = 0;
             currentPoint.X = -1;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            potezi.Clear();
+            redoPotezi = undoPotezi;
+            undoPotezi = new List<int>();
+            foreach(UIElement element in BackGround.Children)
+            {
+                redoContent.Add(element);
+            }
             BackGround.Children.Clear();
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             BackGround.Children.Clear();
-            potezi.Clear();
+            undoPotezi.Clear();
             WindowOpen open = new WindowOpen();
             var result = open.ShowDialog();
             if ((bool)result)
@@ -100,7 +119,7 @@ namespace SketchPad
                 System.Windows.Controls.Image myImage = new System.Windows.Controls.Image();
                 myImage.Source = new BitmapImage(new Uri(open.Open));
                 BackGround.Children.Add(myImage);
-                potezi.Add(1);
+                undoPotezi.Add(1);
             }
         }
 
@@ -141,9 +160,9 @@ namespace SketchPad
 
         private void Brush_Click(object sender, RoutedEventArgs e)
         {
-            WindowBrush window = new WindowBrush(brushSize,color);
+            WindowBrush window = new WindowBrush(brushSize, color);
             var result = window.ShowDialog();
-            if((bool)result)
+            if ((bool)result)
             {
                 color = window.PenColor;
                 brushSize = window.PenSize;
@@ -152,3 +171,13 @@ namespace SketchPad
     }
 }
 //C:\Users\vukan\Desktop
+
+/*Line line = new Line();
+line.Stroke = new SolidColorBrush(color);
+line.StrokeThickness = brushSize - 10;
+line.X1 = currentPoint.X;
+line.Y1 = currentPoint.Y - Menu.Height + (brushSize + 5)/2;
+currentPoint = e.GetPosition(this);
+line.X2 = e.GetPosition(this).X;
+line.Y2 = e.GetPosition(this).Y - Menu.Height + (brushSize +5)/ 2;
+BackGround.Children.Add(line);*/

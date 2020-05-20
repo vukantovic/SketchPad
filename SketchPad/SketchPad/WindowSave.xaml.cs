@@ -25,7 +25,7 @@ namespace SketchPad
         }
         public String Save
         {
-            get => txtFile.Text + "\\" + txtName.Text + ".jpg";
+            get => txtFile.Text + "\\" + txtName.Text + ".png";
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

@@ -43,5 +43,25 @@ namespace SketchPad
         {
             this.DialogResult = true;
         }
+
+        private void sliderRed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            cnsPreview.Background = new SolidColorBrush(Color.FromArgb((byte)sliderOpacity.Value, (byte)sliderRed.Value, (byte)sliderGreen.Value, (byte)sliderBlue.Value));
+        }
+
+        private void sliderGreen_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            cnsPreview.Background = new SolidColorBrush(Color.FromArgb((byte)sliderOpacity.Value, (byte)sliderRed.Value, (byte)sliderGreen.Value, (byte)sliderBlue.Value));
+        }
+
+        private void sliderBlue_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            cnsPreview.Background = new SolidColorBrush(Color.FromArgb((byte)sliderOpacity.Value, (byte)sliderRed.Value, (byte)sliderGreen.Value, (byte)sliderBlue.Value));
+        }
+
+        private void sliderOpacity_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            cnsPreview.Background = new SolidColorBrush(Color.FromArgb((byte)sliderOpacity.Value, (byte)sliderRed.Value, (byte)sliderGreen.Value, (byte)sliderBlue.Value));
+        }
     }
 }
