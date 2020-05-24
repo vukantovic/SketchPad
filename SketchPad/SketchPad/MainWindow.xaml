@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SketchPad"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="229*"/>
@@ -29,13 +30,16 @@
                     <Image Source="brush.png" Margin="20,-27,-90,-26" RenderTransformOrigin="1,0.749"></Image>
                 </MenuItem.Icon>
             </MenuItem>
+            <MenuItem x:Name ="Erase" Header="  Eraser  " Click="Erase_Click"></MenuItem>
             <MenuItem x:Name="Undo"  Click="Undo_Click" Width="61">
                 <MenuItem.Header>
                     <TextBlock Text="   Undo   " HorizontalAlignment="Center" VerticalAlignment="Center" Width="51"/>
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem Header="   Redo   " x:Name="Redo" Click="Redo_Click" Width="65"></MenuItem>
-            <MenuItem x:Name ="Delete" Header="  Delete  " Click="Delete_Click"></MenuItem>
+            <MenuItem Header="   Redo   " x:Name="Redo" Click="Redo_Click" Width="65"/>
+            <MenuItem x:Name ="Delete" Header="  Delete  " Click="Delete_Click"/>
+            <Slider  x:Name="sldSize" Width="222" ValueChanged="sldSize_ValueChanged" Maximum="30" Minimum="1"/>
+
         </Menu>
         <Canvas x:Name="BackGround" Margin="0,83,-0.4,0" Grid.ColumnSpan="3" Grid.RowSpan="2"  MouseLeftButtonDown="BackGround_MouseLeftButtonDown" MouseMove="BackGround_MouseMove" Background="White" MouseUp="BackGround_MouseUp"/>
 

@@ -22,13 +22,16 @@ namespace SketchPad
         public MainWindow()
         {
             InitializeComponent();
+            brushSize = 5;
+            sldSize.Value = brushSize;
+            Brush.Background = Brushes.Blue;
         }
 
         public void Open()
         {
             MessageBox.Show("");
         }
-
+        bool brushSelected = true;
         private void OpenMenu_Click(object sender, RoutedEventArgs e)
         {
             Open();
@@ -50,14 +53,28 @@ namespace SketchPad
         {
             if (e.LeftButton == MouseButtonState.Pressed && currentPoint.X > 0 && currentPoint.Y > Menu.Height + brushSize)
             {
-                Ellipse ellipse = new Ellipse { Width = brushSize, Height = brushSize };
-                ellipse.Stroke = new SolidColorBrush(color);
-                ellipse.StrokeThickness = brushSize + 5;
-                BackGround.Children.Add(ellipse);
-                Canvas.SetTop(ellipse, e.GetPosition(this).Y - Menu.Height - brushSize / 2);
-                Canvas.SetLeft(ellipse, e.GetPosition(this).X - brushSize / 2);
-                potez++;
-                currentPoint = e.GetPosition(this);
+                if(brushSelected)
+                {
+                    Ellipse ellipse = new Ellipse { Width = brushSize, Height = brushSize };
+                    ellipse.Stroke = new SolidColorBrush(color);
+                    ellipse.StrokeThickness = brushSize + 5;
+                    BackGround.Children.Add(ellipse);
+                    Canvas.SetTop(ellipse, e.GetPosition(this).Y - Menu.Height - brushSize / 2);
+                    Canvas.SetLeft(ellipse, e.GetPosition(this).X - brushSize / 2);
+                    potez++;
+                    currentPoint = e.GetPosition(this);
+                }
+                else
+                {
+                    Ellipse ellipse = new Ellipse { Width = brushSize, Height = brushSize };
+                    ellipse.Stroke = new SolidColorBrush(Colors.White);
+                    ellipse.StrokeThickness = brushSize + 5;
+                    BackGround.Children.Add(ellipse);
+                    Canvas.SetTop(ellipse, e.GetPosition(this).Y - Menu.Height - brushSize / 2);
+                    Canvas.SetLeft(ellipse, e.GetPosition(this).X - brushSize / 2);
+                    potez++;
+                    currentPoint = e.GetPosition(this);
+                }
 
             }
         }
@@ -160,13 +177,35 @@ namespace SketchPad
 
         private void Brush_Click(object sender, RoutedEventArgs e)
         {
-            WindowBrush window = new WindowBrush(brushSize, color);
-            var result = window.ShowDialog();
-            if ((bool)result)
+            if(!brushSelected)
             {
-                color = window.PenColor;
-                brushSize = window.PenSize;
+                brushSelected = true;
+                Brush.Background = Brushes.Blue;
+                Erase.Background = Brushes.Transparent;
             }
+            else
+            {
+                WindowBrush window = new WindowBrush(brushSize, color);
+                var result = window.ShowDialog();
+                if ((bool)result)
+                {
+                    sldSize.Value = window.PenSize;
+                    color = window.PenColor;
+                }
+            }
+        }
+
+        private void Erase_Click(object sender, RoutedEventArgs e)
+        {
+            brushSelected = false;
+            Brush.Background = Brushes.Transparent;
+            Erase.Background = Brushes.Blue;
+
+        }
+
+        private void sldSize_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            brushSize = (int)sldSize.Value;
         }
     }
 }
