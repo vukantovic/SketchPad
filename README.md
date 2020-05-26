@@ -24,6 +24,7 @@ WindowBrush:
 
 WindowMain:
   Sastoji se iz menija s raznim funkcionalnostima i canvasa na kome korisnik crta po želji.
+  
   Meni:
     Sadrži dugmad s glavnim funkcionalnostima programa
     * "Open_Click" - Metoda koja otvara WindowOpen iz koga uzima adresu fajla iz kog će se učitati slika na canvas
@@ -34,8 +35,7 @@ WindowMain:
     * "Delete_Click" - Metoda koja brše ceo sadržaj cnsBackground-a, i dodaje ga u redoContent listu.
     * "Eraser_Click" - Postavlja vrednost brush.BrushSelected na false
     * "Brush_Click" - Ako je vrednost brush.BrushSelected jednaka false, postavlja je na true, a inače otvara WindowBrush
-    
-    
+  
   CnsBackground:
     Sadrži evente za crtanje po svojoj površini.
     * "MouseLeftButtonDown" - Event koji čisti liste redoContent i redoPotezi i dobija trenutnu poziciju miša
