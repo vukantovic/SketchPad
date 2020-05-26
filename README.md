@@ -27,19 +27,19 @@ WindowMain:
     
   Meni:
     Sadrži dugmad s glavnim funkcionalnostima programa
-    * Open_Click - Metoda koja otvara WindowOpen iz koga uzima adresu fajla iz kog će se učitati slika na canvas
-    * Save_Click - Metoda koja pravi od canvasa RenderTargetBitmap koji koristi za kreiranje DrawingVisuala od kog pomoću PngEncodera čuva
+    * "Open_Click" - Metoda koja otvara WindowOpen iz koga uzima adresu fajla iz kog će se učitati slika na canvas
+    * "Save_Click" - Metoda koja pravi od canvasa RenderTargetBitmap koji koristi za kreiranje DrawingVisuala od kog pomoću PngEncodera čuva
                    sliku na adresi koju dobija od WindowSave       
-    * Undo_Click - Metoda koja briše poslednju promenu na cnsBackground, i pamti je u listama redoPotez i redoContent
-    * Redo_Click - Metoda koja dodaje na cnsBackground poslednji sadržaj dodat u listu redoContent.
-    * Delete_Click - Metoda koja brše ceo sadržaj cnsBackground-a, i dodaje ga u redoContent listu.
-    * Eraser_Click - Postavlja vrednost brush.BrushSelected na false
-    * Brush_Click - Ako je vrednost brush.BrushSelected jednaka false, postavlja je na true, a inače otvara WindowBrush
+    * "Undo_Click" - Metoda koja briše poslednju promenu na cnsBackground, i pamti je u listama redoPotez i redoContent
+    * "Redo_Click" - Metoda koja dodaje na cnsBackground poslednji sadržaj dodat u listu redoContent.
+    * "Delete_Click" - Metoda koja brše ceo sadržaj cnsBackground-a, i dodaje ga u redoContent listu.
+    * "Eraser_Click" - Postavlja vrednost brush.BrushSelected na false
+    * "Brush_Click" - Ako je vrednost brush.BrushSelected jednaka false, postavlja je na true, a inače otvara WindowBrush
     
     
   CnsBackground:
     Sadrži evente za crtanje po svojoj površini.
-    * MouseLeftButtonDown - Event koji čisti liste redoContent i redoPotezi i dobija trenutnu poziciju miša
-    * MouseMove - Event koji iscrtava elipsu na prethodnoj poziciji miša i dobija novu trenutnu poziciju miša
-    * MouseUp - Event koji završava potez i pamti vrednost u undoPotez, kako bi se "Undo_Click" eventom uklonio s cnsBackground-a
+    * "MouseLeftButtonDown" - Event koji čisti liste redoContent i redoPotezi i dobija trenutnu poziciju miša
+    * "MouseMove" - Event koji iscrtava elipsu na prethodnoj poziciji miša i dobija novu trenutnu poziciju miša
+    * "MouseUp" - Event koji završava potez i pamti vrednost u undoPotez, kako bi se "Undo_Click" eventom uklonio s cnsBackground-a
     
