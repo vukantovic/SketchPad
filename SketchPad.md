@@ -1,5 +1,4 @@
 # SketchPad
-SketchPad
 Cilj projekta je napraviti funkcionalnu aplikaciju za crtanje s omogućenim postavkama četkice, mogućnosti da slike čuva u fajlove i učitava   
 iz fajlova.
 
