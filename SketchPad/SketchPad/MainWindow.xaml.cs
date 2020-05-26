@@ -13,25 +13,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing.Drawing2D;
+using System.ComponentModel;
+
 namespace SketchPad
 {
     public partial class MainWindow : Window
     {
-        Color color = Color.FromRgb(255, 0, 0);
-        int brushSize = 5;
+        Brush brush = new Brush(5, new SolidColorBrush(Colors.Red));
         public MainWindow()
         {
             InitializeComponent();
-            brushSize = 5;
-            sldSize.Value = brushSize;
+            brush.BrushSize = 5;
+            sldSize.Value = brush.BrushSize;
             Brush.Background = Brushes.Blue;
+            Brush.Foreground = Brushes.White;
         }
 
         public void Open()
         {
             MessageBox.Show("");
         }
-        bool brushSelected = true;
         private void OpenMenu_Click(object sender, RoutedEventArgs e)
         {
             Open();
@@ -51,27 +52,27 @@ namespace SketchPad
 
         private void BackGround_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed && currentPoint.X > 0 && currentPoint.Y > Menu.Height + brushSize)
+            if (e.LeftButton == MouseButtonState.Pressed && currentPoint.X > 0 && currentPoint.Y > Menu.Height + brush.BrushSize)
             {
-                if(brushSelected)
+                if(brush.BrushSelected)
                 {
-                    Ellipse ellipse = new Ellipse { Width = brushSize, Height = brushSize };
-                    ellipse.Stroke = new SolidColorBrush(color);
-                    ellipse.StrokeThickness = brushSize + 5;
-                    BackGround.Children.Add(ellipse);
-                    Canvas.SetTop(ellipse, e.GetPosition(this).Y - Menu.Height - brushSize / 2);
-                    Canvas.SetLeft(ellipse, e.GetPosition(this).X - brushSize / 2);
+                    Ellipse ellipse = new Ellipse { Width = brush.BrushSize, Height = brush.BrushSize };
+                    ellipse.Stroke = brush.CustomBrush;
+                    ellipse.StrokeThickness = brush.BrushSize + 5;
+                    cnsBackground.Children.Add(ellipse);
+                    Canvas.SetTop(ellipse, e.GetPosition(this).Y - Menu.Height - brush.BrushSize / 2);
+                    Canvas.SetLeft(ellipse, e.GetPosition(this).X - brush.BrushSize / 2);
                     potez++;
                     currentPoint = e.GetPosition(this);
                 }
                 else
                 {
-                    Ellipse ellipse = new Ellipse { Width = brushSize, Height = brushSize };
+                    Ellipse ellipse = new Ellipse { Width = brush.BrushSize, Height = brush.BrushSize };
                     ellipse.Stroke = new SolidColorBrush(Colors.White);
-                    ellipse.StrokeThickness = brushSize + 5;
-                    BackGround.Children.Add(ellipse);
-                    Canvas.SetTop(ellipse, e.GetPosition(this).Y - Menu.Height - brushSize / 2);
-                    Canvas.SetLeft(ellipse, e.GetPosition(this).X - brushSize / 2);
+                    ellipse.StrokeThickness = brush.BrushSize + 5;
+                    cnsBackground.Children.Add(ellipse);
+                    Canvas.SetTop(ellipse, e.GetPosition(this).Y - Menu.Height - brush.BrushSize / 2);
+                    Canvas.SetLeft(ellipse, e.GetPosition(this).X - brush.BrushSize / 2);
                     potez++;
                     currentPoint = e.GetPosition(this);
                 }
@@ -81,12 +82,12 @@ namespace SketchPad
 
         private void Undo_Click(object sender, RoutedEventArgs e)
         {
-            if (BackGround.Children.Count > 0)
+            if (cnsBackground.Children.Count > 0)
             {
                 for (int i = 0; i < undoPotezi[undoPotezi.Count - 1]; i++)
                 {
-                    redoContent.Add(BackGround.Children[BackGround.Children.Count - 1]);
-                    BackGround.Children.RemoveAt(BackGround.Children.Count - 1);
+                    redoContent.Add(cnsBackground.Children[cnsBackground.Children.Count - 1]);
+                    cnsBackground.Children.RemoveAt(cnsBackground.Children.Count - 1);
                 }
                 redoPotezi.Add(undoPotezi[undoPotezi.Count - 1]);
                 undoPotezi.RemoveAt(undoPotezi.Count - 1);
@@ -99,7 +100,7 @@ namespace SketchPad
             {
                 for (int i = 0; i < redoPotezi[redoPotezi.Count - 1]; i++)
                 {
-                    BackGround.Children.Add(redoContent[redoContent.Count - 1]);
+                    cnsBackground.Children.Add(redoContent[redoContent.Count - 1]);
                     redoContent.RemoveAt(redoContent.Count - 1);
                 }
                 undoPotezi.Add(redoPotezi[redoPotezi.Count - 1]);
@@ -118,16 +119,16 @@ namespace SketchPad
         {
             redoPotezi = undoPotezi;
             undoPotezi = new List<int>();
-            foreach(UIElement element in BackGround.Children)
+            foreach(UIElement element in cnsBackground.Children)
             {
                 redoContent.Add(element);
             }
-            BackGround.Children.Clear();
+            cnsBackground.Children.Clear();
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            BackGround.Children.Clear();
+            cnsBackground.Children.Clear();
             undoPotezi.Clear();
             WindowOpen open = new WindowOpen();
             var result = open.ShowDialog();
@@ -135,7 +136,7 @@ namespace SketchPad
             {
                 System.Windows.Controls.Image myImage = new System.Windows.Controls.Image();
                 myImage.Source = new BitmapImage(new Uri(open.Open));
-                BackGround.Children.Add(myImage);
+                cnsBackground.Children.Add(myImage);
                 undoPotezi.Add(1);
             }
         }
@@ -143,18 +144,18 @@ namespace SketchPad
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             
-            RenderTargetBitmap rtb = new RenderTargetBitmap((int)BackGround.RenderSize.Width,
-            (int)BackGround.RenderSize.Height, 96d,1080, System.Windows.Media.PixelFormats.Default);
-            rtb.Render(BackGround);
-            var target = new RenderTargetBitmap((int)(BackGround.RenderSize.Width), (int)(BackGround.RenderSize.Height), 96, 96, PixelFormats.Pbgra32);
-            var brush = new VisualBrush(BackGround);
+            RenderTargetBitmap rtb = new RenderTargetBitmap((int)cnsBackground.RenderSize.Width,
+            (int)cnsBackground.RenderSize.Height, 96d,1080, System.Windows.Media.PixelFormats.Default);
+            rtb.Render(cnsBackground);
+            var target = new RenderTargetBitmap((int)(cnsBackground.RenderSize.Width), (int)(cnsBackground.RenderSize.Height), 96, 96, PixelFormats.Pbgra32);
+            var brush = new VisualBrush(cnsBackground);
 
             var visual = new DrawingVisual();
             var drawingContext = visual.RenderOpen();
 
 
             drawingContext.DrawRectangle(brush, null, new Rect(new Point(0, 0),
-                new Point(BackGround.RenderSize.Width, BackGround.RenderSize.Height)));
+                new Point(cnsBackground.RenderSize.Width, cnsBackground.RenderSize.Height)));
 
             drawingContext.Close();
 
@@ -177,35 +178,39 @@ namespace SketchPad
 
         private void Brush_Click(object sender, RoutedEventArgs e)
         {
-            if(!brushSelected)
+            if(!brush.BrushSelected)
             {
-                brushSelected = true;
+                brush.BrushSelected = true;
                 Brush.Background = Brushes.Blue;
+                Brush.Foreground = Brushes.White;
                 Erase.Background = Brushes.Transparent;
+                Erase.Foreground = Brushes.Black;
             }
             else
             {
-                WindowBrush window = new WindowBrush(brushSize, color);
+                WindowBrush window = new WindowBrush(brush.BrushSize, brush.CustomBrush.Color);
                 var result = window.ShowDialog();
                 if ((bool)result)
                 {
                     sldSize.Value = window.PenSize;
-                    color = window.PenColor;
+                    brush.CustomBrush.Color = window.PenColor;
                 }
             }
         }
 
         private void Erase_Click(object sender, RoutedEventArgs e)
         {
-            brushSelected = false;
+            brush.BrushSelected = false;
             Brush.Background = Brushes.Transparent;
+            Brush.Foreground = Brushes.Black;
             Erase.Background = Brushes.Blue;
+            Erase.Foreground = Brushes.White;
 
         }
 
         private void sldSize_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            brushSize = (int)sldSize.Value;
+            brush.BrushSize = (int)sldSize.Value;
         }
     }
 }

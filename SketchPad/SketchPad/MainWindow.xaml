@@ -18,17 +18,11 @@
             <ColumnDefinition Width="398*"/>
         </Grid.ColumnDefinitions>
         <Menu x:Name="Menu" Margin="0,0,-0.4,0" Grid.ColumnSpan="3" Height="83" VerticalAlignment="Top">
-            <MenuItem x:Name="File"  AllowDrop="True" Height="83" Width="140">
-                <MenuItem.Icon>
-                    <Image Source ="file.png" Margin="20,-27,-90,-26"/>
-                </MenuItem.Icon>
+            <MenuItem x:Name="File" Header="                 File" VerticalAlignment="Center" AllowDrop="True" Height="83" Width="140">
                 <MenuItem x:Name="OpenImage" Header="Open" Click="Open_Click"></MenuItem>
                 <MenuItem x:Name="Save" Header="Save" Click="Save_Click"></MenuItem>
             </MenuItem>
-            <MenuItem x:Name="Brush" Width="126" Click="Brush_Click">
-                <MenuItem.Icon>
-                    <Image Source="brush.png" Margin="20,-27,-90,-26" RenderTransformOrigin="1,0.749"></Image>
-                </MenuItem.Icon>
+            <MenuItem x:Name="Brush" Header="             Brush    " Width="126" Click="Brush_Click">
             </MenuItem>
             <MenuItem x:Name ="Erase" Header="  Eraser  " Click="Erase_Click"></MenuItem>
             <MenuItem x:Name="Undo"  Click="Undo_Click" Width="61">
@@ -41,7 +35,7 @@
             <Slider  x:Name="sldSize" Width="222" ValueChanged="sldSize_ValueChanged" Maximum="30" Minimum="1"/>
 
         </Menu>
-        <Canvas x:Name="BackGround" Margin="0,83,-0.4,0" Grid.ColumnSpan="3" Grid.RowSpan="2"  MouseLeftButtonDown="BackGround_MouseLeftButtonDown" MouseMove="BackGround_MouseMove" Background="White" MouseUp="BackGround_MouseUp"/>
+        <Canvas x:Name="cnsBackground" Margin="0,83,-0.4,0" Grid.ColumnSpan="3" Grid.RowSpan="2"  MouseLeftButtonDown="BackGround_MouseLeftButtonDown" MouseMove="BackGround_MouseMove" Background="White" MouseUp="BackGround_MouseUp"/>
 
     </Grid>
 </Window>
