@@ -1,6 +1,5 @@
 # SketchPad
-Cilj projekta je napraviti funkcionalnu aplikaciju za crtanje s omogućenim postavkama četkice, mogućnosti da slike čuva u fajlove i učitava   
-iz fajlova.
+Cilj projekta je napraviti funkcionalnu aplikaciju za crtanje s omogućenim postavkama četkice, mogućnosti da slike čuva u fajlove i učitava iz fajlova.
 
 Klasa Brush:
   Sadrži informacije bitne za postavke iscrtavanja na glavnom prozoru, odnosno veličinu četkice, boju i to da li je odabrana četkica ili   
