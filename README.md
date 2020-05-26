@@ -24,7 +24,6 @@ WindowBrush:
 
 WindowMain:
   Sastoji se iz menija s raznim funkcionalnostima i canvasa na kome korisnik crta po želji.
-    
   Meni:
     Sadrži dugmad s glavnim funkcionalnostima programa
     * "Open_Click" - Metoda koja otvara WindowOpen iz koga uzima adresu fajla iz kog će se učitati slika na canvas
